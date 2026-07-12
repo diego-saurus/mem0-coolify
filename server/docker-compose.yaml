@@ -2,7 +2,7 @@ services:
   mem0:
     build:
       context: ..
-      dockerfile: server/Dockerfile
+      dockerfile: server/dev.Dockerfile
     volumes:
       - mem0-history:/app/history
       - .:/app
