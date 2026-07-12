@@ -90,6 +90,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(
     async (email: string, password: string) => {
       const res = await api.post(AUTH_ENDPOINTS.LOGIN, { email, password });
+      console.log({
+        clientEnv: process.env.NEXT_PUBLIC_API_URL,
+      });
       setAccessToken(res.data.access_token);
       await storeRefreshToken(res.data.refresh_token);
       await loadUser();

@@ -45,6 +45,10 @@ const createApi = (): AxiosInstance & {
 
   api.interceptors.request.use(
     async (config) => {
+      console.log({
+        serverEnv: process.env.NEXT_PUBLIC_API_URL,
+        baseURL: config.baseURL,
+      });
       if (cachedToken) {
         config.headers = config.headers ?? {};
         config.headers.Authorization = `Bearer ${cachedToken}`;
