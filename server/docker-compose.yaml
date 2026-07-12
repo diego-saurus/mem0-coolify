@@ -8,8 +8,6 @@ services:
       - .:/app
     command: >
       sh -c "rm -rf /app/packages && pip install -q --force-reinstall --no-deps mem0ai && alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
-    ports:
-      - ${SERVICE_PORT_MEM0:-8888}:8000
     environment:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
@@ -33,8 +31,6 @@ services:
 
   mem0-dashboard:
     build: ./dashboard
-    ports:
-      - ${SERVICE_PORT_MEM0_DASHBOARD:-3333}:3000
     environment:
       - NEXT_PUBLIC_API_URL=https://${SERVICE_FQDN_MEM0}
       - API_INTERNAL_URL=http://mem0:8000
