@@ -36,7 +36,7 @@ services:
     ports:
       - ${SERVICE_PORT_MEM0_DASHBOARD:-3333}:3000
     environment:
-      - NEXT_PUBLIC_API_URL=https://${SERVICE_FQDN_MEM0_DASHBOARD}
+      - NEXT_PUBLIC_API_URL=https://${SERVICE_FQDN_MEM0}
       - API_INTERNAL_URL=http://mem0:8000
       - NEXT_PUBLIC_INSTANCE_NAME=Mem0
     depends_on:
