@@ -148,9 +148,9 @@ DEFAULT_CONFIG = {
     "history_db_path": HISTORY_DB_PATH,
 }
 
-print(f"[mem0-config] EMBEDDING_DIMENSIONS env={EMBEDDING_DIMENSIONS}")
-print(f"[mem0-config] vector_store={DEFAULT_CONFIG['vector_store']}")
-print(f"[mem0-config] embedder={DEFAULT_CONFIG['embedder']}")
+logging.info(f"[mem0-config] EMBEDDING_DIMENSIONS env={EMBEDDING_DIMENSIONS}")
+logging.info(f"[mem0-config] vector_store={DEFAULT_CONFIG['vector_store']}")
+logging.info(f"[mem0-config] embedder={DEFAULT_CONFIG['embedder']}")
 
 
 set_session_factory(SessionLocal)
