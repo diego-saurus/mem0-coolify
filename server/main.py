@@ -129,7 +129,7 @@ DEFAULT_CONFIG = {
             "user": POSTGRES_USER,
             "password": POSTGRES_PASSWORD,
             "collection_name": POSTGRES_COLLECTION_NAME,
-            "embedding_model_dims": int(EMBEDDING_DIMENSIONS),
+            "embedding_model_dims": 1024,
         },
     },
     "llm": {
