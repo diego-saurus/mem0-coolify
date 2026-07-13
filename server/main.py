@@ -114,9 +114,9 @@ POSTGRES_COLLECTION_NAME = os.environ.get("POSTGRES_COLLECTION_NAME", "memories"
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 OPENAI_BASE_URL = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1")
 HISTORY_DB_PATH = os.environ.get("HISTORY_DB_PATH", "/app/history/history.db")
-DEFAULT_LLM_MODEL = os.environ.get("MEM0_DEFAULT_LLM_MODEL", "gpt-4.1-nano-2025-04-14")
-DEFAULT_EMBEDDER_MODEL = os.environ.get("MEM0_DEFAULT_EMBEDDER_MODEL", "text-embedding-3-small")
-EMBEDDING_DIMENSIONS = int(os.environ.get("EMBEDDING_DIMENSIONS", "1536"))
+DEFAULT_LLM_MODEL = os.environ.get("MEM0_DEFAULT_LLM_MODEL", "memory")
+DEFAULT_EMBEDDER_MODEL = os.environ.get("MEM0_DEFAULT_EMBEDDER_MODEL", "coolify-ollama/qwen3-embedding:0.6b")
+EMBEDDING_DIMENSIONS = os.environ.get("EMBEDDING_DIMENSIONS", "1024")
 
 DEFAULT_CONFIG = {
     "version": "v1.1",
@@ -129,7 +129,7 @@ DEFAULT_CONFIG = {
             "user": POSTGRES_USER,
             "password": POSTGRES_PASSWORD,
             "collection_name": POSTGRES_COLLECTION_NAME,
-            "embedding_model_dims": EMBEDDING_DIMENSIONS,
+            "embedding_model_dims": int(EMBEDDING_DIMENSIONS),
         },
     },
     "llm": {
@@ -142,16 +142,10 @@ DEFAULT_CONFIG = {
             "api_key": OPENAI_API_KEY,
             "model": DEFAULT_EMBEDDER_MODEL,
             "openai_base_url": OPENAI_BASE_URL,
-            "embedding_dims": EMBEDDING_DIMENSIONS,
         },
     },
     "history_db_path": HISTORY_DB_PATH,
 }
-
-logging.info(f"[mem0-config] EMBEDDING_DIMENSIONS env={EMBEDDING_DIMENSIONS}")
-logging.info(f"[mem0-config] vector_store={DEFAULT_CONFIG['vector_store']}")
-logging.info(f"[mem0-config] embedder={DEFAULT_CONFIG['embedder']}")
-
 
 set_session_factory(SessionLocal)
 initialize_state(DEFAULT_CONFIG)
