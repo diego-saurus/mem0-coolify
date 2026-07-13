@@ -5,7 +5,6 @@ services:
       dockerfile: server/dev.Dockerfile
     volumes:
       - mem0-history:/app/history
-      - .:/app
     command: >
       sh -c "rm -rf /app/packages && pip install -q --force-reinstall --no-deps mem0ai && alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
     environment:
