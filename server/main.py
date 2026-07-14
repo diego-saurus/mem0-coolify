@@ -104,13 +104,6 @@ elif not ADMIN_API_KEY:
 
 telemetry.log_status()
 
-POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "postgres")
-POSTGRES_PORT = os.environ.get("POSTGRES_PORT", "5432")
-POSTGRES_DB = os.environ.get("POSTGRES_DB", "postgres")
-POSTGRES_USER = os.environ.get("POSTGRES_USER", "postgres")
-POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "postgres")
-POSTGRES_COLLECTION_NAME = os.environ.get("POSTGRES_COLLECTION_NAME", "memories")
-
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 OPENAI_BASE_URL = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1")
 HISTORY_DB_PATH = os.environ.get("HISTORY_DB_PATH", "/app/history/history.db")
@@ -118,17 +111,26 @@ DEFAULT_LLM_MODEL = os.environ.get("MEM0_DEFAULT_LLM_MODEL", "gpt-4.1-nano-2025-
 DEFAULT_EMBEDDER_MODEL = os.environ.get("MEM0_DEFAULT_EMBEDDER_MODEL", "text-embedding-3-small")
 EMBEDDING_DIMENSIONS = int(os.environ.get("EMBEDDING_DIMENSIONS", "1536"))
 
+VECTOR_STORE_PROVIDER = os.environ.get("VECTOR_STORE_PROVIDER", "pgvector")
+VECTOR_STORE_HOST = os.environ.get("VECTOR_STORE_HOST", "localhost")
+VECTOR_STORE_PORT = os.environ.get("VECTOR_STORE_PORT", "5432")
+VECTOR_STORE_COLLECTION_NAME = os.environ.get("VECTOR_STORE_COLLECTION_NAME", "memories")
+VECTOR_STORE_API_KEY = os.environ.get("VECTOR_STORE_API_KEY")
+VECTOR_STORE_USER = os.environ.get("VECTOR_STORE_USER")
+VECTOR_STORE_PASSWORD = os.environ.get("VECTOR_STORE_PASSWORD")
+VECTOR_STORE_DB_NAME = os.environ.get("VECTOR_STORE_DB_NAME", "mem0")
+
 DEFAULT_CONFIG = {
     "version": "v1.1",
     "vector_store": {
-        "provider": "pgvector",
+        "provider": VECTOR_STORE_PROVIDER,
         "config": {
-            "host": POSTGRES_HOST,
-            "port": int(POSTGRES_PORT),
-            "dbname": POSTGRES_DB,
-            "user": POSTGRES_USER,
-            "password": POSTGRES_PASSWORD,
-            "collection_name": POSTGRES_COLLECTION_NAME,
+            "host": VECTOR_STORE_HOST,
+            "port": int(VECTOR_STORE_PORT),
+            "dbname": VECTOR_STORE_DB_NAME,
+            "user": VECTOR_STORE_USER,
+            "password": VECTOR_STORE_PASSWORD,
+            "collection_name": VECTOR_STORE_COLLECTION_NAME,
             "embedding_model_dims": EMBEDDING_DIMENSIONS,
         },
     },
