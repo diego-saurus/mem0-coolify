@@ -127,6 +127,7 @@ DEFAULT_CONFIG = {
             "api_key": VECTOR_STORE_API_KEY,
             "collection_name": VECTOR_STORE_COLLECTION_NAME,
             "embedding_model_dims": EMBEDDING_DIMENSIONS,
+            "https": False
         },
     },
     "llm": {
