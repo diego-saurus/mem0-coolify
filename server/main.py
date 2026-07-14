@@ -111,14 +111,11 @@ DEFAULT_LLM_MODEL = os.environ.get("MEM0_DEFAULT_LLM_MODEL", "gpt-4.1-nano-2025-
 DEFAULT_EMBEDDER_MODEL = os.environ.get("MEM0_DEFAULT_EMBEDDER_MODEL", "text-embedding-3-small")
 EMBEDDING_DIMENSIONS = int(os.environ.get("EMBEDDING_DIMENSIONS", "1536"))
 
-VECTOR_STORE_PROVIDER = os.environ.get("VECTOR_STORE_PROVIDER", "pgvector")
+VECTOR_STORE_PROVIDER = os.environ.get("VECTOR_STORE_PROVIDER", "qdrant")
 VECTOR_STORE_HOST = os.environ.get("VECTOR_STORE_HOST", "localhost")
-VECTOR_STORE_PORT = os.environ.get("VECTOR_STORE_PORT", "5432")
+VECTOR_STORE_PORT = os.environ.get("VECTOR_STORE_PORT", "6334")
 VECTOR_STORE_COLLECTION_NAME = os.environ.get("VECTOR_STORE_COLLECTION_NAME", "memories")
 VECTOR_STORE_API_KEY = os.environ.get("VECTOR_STORE_API_KEY")
-VECTOR_STORE_USER = os.environ.get("VECTOR_STORE_USER")
-VECTOR_STORE_PASSWORD = os.environ.get("VECTOR_STORE_PASSWORD")
-VECTOR_STORE_DB_NAME = os.environ.get("VECTOR_STORE_DB_NAME", "mem0")
 
 DEFAULT_CONFIG = {
     "version": "v1.1",
@@ -127,9 +124,7 @@ DEFAULT_CONFIG = {
         "config": {
             "host": VECTOR_STORE_HOST,
             "port": int(VECTOR_STORE_PORT),
-            "dbname": VECTOR_STORE_DB_NAME,
-            "user": VECTOR_STORE_USER,
-            "password": VECTOR_STORE_PASSWORD,
+            "api_key": VECTOR_STORE_API_KEY,
             "collection_name": VECTOR_STORE_COLLECTION_NAME,
             "embedding_model_dims": EMBEDDING_DIMENSIONS,
         },
